@@ -8,6 +8,6 @@ export interface ITarefa {
 
 export enum StatusTarefa {
   PENDENTE = 'Pendente',
-  EM_ANDAMENTO = 'Em Andamento',
-  CONCLUIDA = 'Concluída',
+  DESENVOLVIMENTO = 'DESENVOLVIMENTO',
+  CONCLUIDO = 'Concluído',
 }
