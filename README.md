@@ -2,6 +2,39 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.7.
 
+## Pré-requisitos
+
+Antes de rodar a aplicação, certifique-se de ter instalado em sua máquina:
+
+- [Node.js](https://nodejs.org/) (versão 18 ou superior recomendada)
+- [npm](https://www.npmjs.com/) (geralmente já vem com o Node.js)
+- [Angular CLI](https://angular.io/cli)  
+  Para instalar, execute no terminal:
+  ```bash
+  npm install -g @angular/cli
+
+## Iniciando o projeto
+
+Para rodar a aplicação após importar o projeto, siga os passos abaixo:
+
+1. **Instale as dependências**  
+   No terminal, navegue até a pasta do projeto e execute:
+   ```bash
+   npm install
+   ```
+2. **Inicie o servidor de desenvolvimento**
+
+   Após instalar as dependências, execute:
+   ```bash
+   ng serve
+   ```
+   
+   O Angular irá compilar o projeto e iniciar o servidor local.
+
+3. **Acesse a aplicação**
+   Abra o navegador e acesse:
+   http://localhost:4200/
+
 ## Development server
 
 To start a local development server, run:
