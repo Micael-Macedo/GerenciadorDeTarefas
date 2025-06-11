@@ -1,1 +1,8 @@
-<p>coluna works!</p>
+<div class="coluna">
+  <h2>{{ coluna.nome }}</h2>
+  @for (tarefa of coluna.tarefas; track $index) {
+    <app-tarefa
+      [tarefa]="tarefa">
+    </app-tarefa>
+  }
+</div>
