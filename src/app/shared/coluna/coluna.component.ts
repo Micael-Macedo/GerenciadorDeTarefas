@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { IColuna } from '../../../interfaces/coluna.interface';
+import { ColunaService } from '../../../services/coluna.service';
+import { TarefaComponent } from "../tarefa/tarefa.component";
 
 @Component({
   selector: 'app-coluna',
-  imports: [],
+  imports: [TarefaComponent],
   templateUrl: './coluna.component.html',
   styleUrl: './coluna.component.scss'
 })
 export class ColunaComponent {
-
+  readonly colunaService = inject(ColunaService);
+  @Input() coluna!: IColuna
 }
