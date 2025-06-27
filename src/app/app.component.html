@@ -50,8 +50,10 @@
   </form>
 </div>
 
-@for (item of colunas; track $index) {
-  <app-coluna
+<div class="colunas">
+  @for (item of colunas; track $index) {
+    <app-coluna
     [coluna]="item"
-  ></app-coluna>
-}
+    ></app-coluna>
+  }
+</div>

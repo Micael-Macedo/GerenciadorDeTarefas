@@ -1,8 +1,9 @@
-<div class="coluna">
+<div class="coluna" [ngClass]="coluna.corColuna">
   <h2>{{ coluna.nome }}</h2>
-  @for (tarefa of coluna.tarefas; track $index) {
-    <app-tarefa
-      [tarefa]="tarefa">
+  <div class="tarefas">
+    @for (tarefa of coluna.tarefas; track $index) {
+    <app-tarefa [tarefa]="tarefa">
     </app-tarefa>
-  }
+    }
+  </div>
 </div>
