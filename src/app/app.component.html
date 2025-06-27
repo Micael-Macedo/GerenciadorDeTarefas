@@ -1,33 +1,41 @@
 <!-- form.component.html -->
 <div class="forms">
   <form [formGroup]="formColuna" (ngSubmit)="submitColuna(isEditMode ? 'PUT' : 'POST')">
-    <div *ngIf="isEditMode">
-      <label for="id">ID:</label>
-      <input id="id" type="text" formControlName="id" readonly>
-    </div>
+    @if (isEditMode) {
+      <div>
+        <label for="id">ID:</label>
+        <input id="id" type="text" formControlName="id" readonly>
+      </div>
+    }
 
     <div>
       <label for="nome">Nome:</label>
       <input id="nome" type="text" formControlName="nome">
-      <div *ngIf="formColuna.get('nome')?.invalid && formColuna.get('nome')?.touched" class="error">
-        Nome é obrigatório
-      </div>
+      @if (formColuna.get('nome')?.invalid && formColuna.get('nome')?.touched) {
+        <div class="error">
+          Nome é obrigatório
+        </div>
+      }
     </div>
 
     <div>
       <label for="email">Email:</label>
       <input id="email" type="email" formControlName="email">
-      <div *ngIf="formColuna.get('email')?.invalid && formColuna.get('email')?.touched" class="error">
-        Email inválido
-      </div>
+      @if (formColuna.get('email')?.invalid && formColuna.get('email')?.touched) {
+        <div class="error">
+          Email inválido
+        </div>
+      }
     </div>
 
     <div>
       <label for="telefone">Telefone:</label>
       <input id="telefone" type="tel" formControlName="telefone">
-      <div *ngIf="formColuna.get('telefone')?.invalid && formColuna.get('telefone')?.touched" class="error">
-        Telefone inválido (10 ou 11 dígitos)
-      </div>
+      @if (formColuna.get('telefone')?.invalid && formColuna.get('telefone')?.touched) {
+        <div class="error">
+          Telefone inválido (10 ou 11 dígitos)
+        </div>
+      }
     </div>
 
     <div class="buttons">

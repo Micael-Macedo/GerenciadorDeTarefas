@@ -1,20 +1,18 @@
 import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { IColuna } from '../interfaces/coluna.interface';
 import { ColunaComponent } from './shared/coluna/coluna.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { ColunaService } from '../services/coluna.service';
 import { TarefaService } from '../services/tarefa.service';
 import { ITarefa } from '../interfaces/tarefa.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   imports: [
-    RouterOutlet,
+    CommonModule,
     ColunaComponent,
-    BrowserModule,
     ReactiveFormsModule,
     HttpClientModule],
   templateUrl: './app.component.html',
