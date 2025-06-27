@@ -1,0 +1,27 @@
+.coluna{
+  border-radius: 20px;
+  width: 500px;
+  height: 500px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  &.ROXO{
+    border: 5px solid #900909;
+  }
+  &.VERDE{
+    border: 5px solid #009000;
+  }
+  &.AZUL{
+    border: 5px solid #0000FF;
+  }
+  &.VERMELHO{
+    border: 5px solid #FF0000;
+  }
+  .tarefas{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: scroll;
+    height: 100%;
+  }
+}
