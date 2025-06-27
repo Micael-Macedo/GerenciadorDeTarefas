@@ -3,11 +3,12 @@ export interface ITarefa {
   titulo: string;
   descricao: string;
   concluida: boolean;
-  statusTarefa: StatusTarefa
+  prioridade: string;
+  status: StatusTarefa
 }
 
 export enum StatusTarefa {
   PENDENTE = 'Pendente',
-  DESENVOLVIMENTO = 'DESENVOLVIMENTO',
+  DESENVOLVIMENTO = 'Desenvolvimento',
   CONCLUIDO = 'Concluído',
 }
