@@ -1,8 +1,20 @@
-<div class="tarefa" [ngClass]="tarefa.status">
-  <h3>{{ tarefa.titulo }}</h3>
-  <p>{{ tarefa.descricao }}</p>
-  <p><strong>Status:</strong> {{ tarefa.status }}</p>
-  <p><strong>Prioridade:</strong> {{ tarefa.prioridade }}</p>
-  <button (click)="editTarefa(tarefa)">Editar</button>
-  <button (click)="deleteTarefa(tarefa.id)">Deletar</button>
-</div>
+<ng-container *ngIf="!editando; else modoEdicao">
+  <div class="tarefa" [ngClass]="tarefa.status">
+    <h3>{{ tarefa.titulo }}</h3>
+    <p>{{ tarefa.descricao }}</p>
+    <p><strong>Status:</strong> {{ tarefa.status }}</p>
+    <p><strong>Prioridade:</strong> {{ tarefa.prioridade }}</p>
+
+    <button (click)="habilitarEdicao()">Editar</button>
+    <button (click)="deleteTarefa(tarefa.id)">Deletar</button>
+  </div>
+</ng-container>
+
+<ng-template #modoEdicao>
+  <div class="tarefa-edit">
+    <input [(ngModel)]="tarefaEditavel.titulo" placeholder="Título" />
+    <textarea [(ngModel)]="tarefaEditavel.descricao" placeholder="Descrição"></textarea>
+    <button (click)="salvarEdicao()">Salvar</button>
+    <button (click)="cancelarEdicao()">Cancelar</button>
+  </div>
+</ng-template>

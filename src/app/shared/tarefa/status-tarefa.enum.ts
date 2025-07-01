@@ -1,0 +1,5 @@
+export enum StatusTarefa {
+  PENDENTE = 'PENDENTE',
+  DESENVOLVENDO = 'DESENVOLVENDO',
+  CONCLUIDO = 'CONCLUIDO',
+}

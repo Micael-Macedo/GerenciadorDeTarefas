@@ -12,5 +12,15 @@ import { CommonModule } from '@angular/common';
 })
 export class ColunaComponent {
   readonly colunaService = inject(ColunaService);
-  @Input() coluna!: IColuna
+  @Input() coluna!: IColuna;
+
+  deletarTarefa(id: number): void {
+    this.coluna.tarefas = this.coluna.tarefas.filter(t => t.id !== id);
+  }
+
+  editarTarefa(tarefa: any): void {
+    console.log('Tarefa recebida para edição:', tarefa);
+    // Aqui você pode abrir um formulário/modal para edição se quiser
+  }
 }
+
