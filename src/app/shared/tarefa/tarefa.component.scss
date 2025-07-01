@@ -3,12 +3,12 @@
   margin-bottom: 10px;
   border-radius: 5px;
   &.PENDENTE{
-    border: 5px solid #f00;
-    border-left: 20px solid #f00;
+    border: 5px solid #FE8330;
+    border-left: 20px solid #FE8330;
   }
   &.DESENVOLVENDO{
-    border: 5px solid #00f;
-    border-left: 20px solid #00f;
+    border: 5px solid #FFE135;
+    border-left: 20px solid #FFE135;
   }
   &.CONCLUIDO{
     border: 5px solid #0f0;

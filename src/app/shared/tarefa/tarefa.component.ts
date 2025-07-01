@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { ITarefa } from '../../../interfaces/tarefa.interface';
 import { TarefaService } from '../../../services/tarefa.service';
 import { CommonModule } from '@angular/common';
@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class TarefaComponent {
   @Input() tarefa!: ITarefa;
+  @Output() tarefaDeletada = new EventEmitter<number>();  
   readonly tarefaService = inject(TarefaService);
 
   editTarefa(tarefa: ITarefa): void {
@@ -21,6 +22,7 @@ export class TarefaComponent {
     this.tarefaService.deleteTarefa(id).subscribe({
       next: () => {
         console.log('Tarefa deletada com sucesso');
+        this.tarefaDeletada.emit(id);  
       },
       error: (err) => {
         console.error('Erro ao deletar tarefa:', err);
