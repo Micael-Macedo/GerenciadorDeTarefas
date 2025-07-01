@@ -1,6 +1,7 @@
 <!-- form.component.html -->
 <div class="forms">
   <form [formGroup]="formColuna" (ngSubmit)="submitColuna(isEditMode ? 'PUT' : 'POST')">
+    <h2>Coluna</h2>
     @if (isEditMode) {
       <div>
         <label for="id">ID:</label>
@@ -19,29 +20,76 @@
     </div>
 
     <div>
-      <label for="email">Email:</label>
-      <input id="email" type="email" formControlName="email">
-      @if (formColuna.get('email')?.invalid && formColuna.get('email')?.touched) {
-        <div class="error">
-          Email inválido
-        </div>
-      }
-    </div>
-
-    <div>
-      <label for="telefone">Telefone:</label>
-      <input id="telefone" type="tel" formControlName="telefone">
-      @if (formColuna.get('telefone')?.invalid && formColuna.get('telefone')?.touched) {
-        <div class="error">
-          Telefone inválido (10 ou 11 dígitos)
-        </div>
-      }
+      <label for="corColuna">Cor:</label>
+      <select id="corColuna" formControlName="corColuna">
+        <option value="VERDE">Verde</option>
+        <option value="AMARELO">Amarelo</option>
+        <option value="AZUL">Azul</option>
+        <option value="VERMELHO">Vermelho</option>
+      </select>
     </div>
 
     <div class="buttons">
       <button type="submit">{{ isEditMode ? 'Atualizar' : 'Criar' }}</button>
 
       <button type="button" (click)="submitColuna('DELETE')" [disabled]="!isEditMode">
+        Deletar
+      </button>
+
+      <button type="button" (click)="formColuna.reset()">Limpar</button>
+    </div>
+  </form>
+  <form [formGroup]="formTarefa" (ngSubmit)="submitTarefa(isEditMode ? 'PUT' : 'POST')">
+    <h2>Tarefa</h2>
+    @if (isEditMode) {
+      <div>
+        <label for="id">ID:</label>
+        <input id="id" type="text" formControlName="id" readonly>
+      </div>
+    }
+
+    <div>
+      <label for="titulo">Título:</label>
+      <input id="titulo" type="text" formControlName="titulo">
+      @if (formColuna.get('titulo')?.invalid && formColuna.get('titulo')?.touched) {
+        <div class="error">
+          Nome é obrigatório
+        </div>
+      }
+    </div>
+
+    <div>
+      <label for="descricao">Descrição:</label>
+      <input id="descricao" type="text" formControlName="descricao">
+      @if (formColuna.get('descricao')?.invalid && formColuna.get('descricao')?.touched) {
+        <div class="error">
+          Nome é obrigatório
+        </div>
+      }
+    </div>
+
+    <div>
+      <label for="coluna_id">Coluna</label>
+      <select id="coluna_id" formControlName="coluna_id">
+        @for (item of colunas; track $index) {
+          <option [value]="item.id">{{ item.nome }}</option>
+        }
+      </select>
+    </div>
+
+    <div>
+      <label for="prioridade">Prioridade</label>
+      <select id="prioridade" formControlName="prioridade">
+        <option value="ALTA">Alta</option>
+        <option value="MEDIA">Média</option>
+        <option value="BAIXA">Baixa</option>
+      </select>
+    </div>
+
+    <div class="buttons">
+      <button type="submit">{{ isEditMode ? 'Atualizar' : 'Criar' }}</button>
+
+      <button type="button" (click)="submitTarefa('DELETE')" [disabled]="!isEditMode">
         Deletar
       </button>
 

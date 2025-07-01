@@ -20,8 +20,8 @@ export class TarefaService {
     return this.http.get<ITarefa>(`${this.apiUrl}/${id}`);
   }
 
-  postTarefa(Tarefa: ITarefa): Observable<ITarefa> {
-    return this.http.post<ITarefa>(this.apiUrl, Tarefa);
+  postTarefa(Tarefa: ITarefa, coluna_id: string): Observable<ITarefa> {
+    return this.http.post<ITarefa>(`${this.apiUrl}/${coluna_id}`, Tarefa);
   }
 
   putTarefa(id: number, Tarefa: ITarefa): Observable<ITarefa> {

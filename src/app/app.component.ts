@@ -40,14 +40,15 @@ export class AppComponent {
     this.formColuna = this.fb.group({
       id: [null],
       nome: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      telefone: ['', Validators.pattern('[0-9]{10,11}')]
+      corColuna: ['', Validators.required],
     });
+
     this.formTarefa = this.fb.group({
       id: [null],
-      nome: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      telefone: ['', Validators.pattern('[0-9]{10,11}')]
+      coluna_id: ['', Validators.required],
+      titulo: ['', Validators.required],
+      descricao: ['', Validators.required],
+      prioridade: ['', Validators.required],
     });
   }
 
@@ -62,6 +63,7 @@ export class AppComponent {
 
   // Método para todas as operações ao realizar o submit da coluna
   submitColuna(method: string): void {
+    console.log(this.formColuna, method);
     if (this.formColuna.invalid) {
       this.formColuna.markAllAsTouched();
       return;
@@ -83,8 +85,10 @@ export class AppComponent {
       case 'POST':
         this.colunaService.postColuna(formData).subscribe(
           {
-            next: () => {
+            next: (coluna: IColuna) => {
               this.formColuna.reset();
+              this.colunas.push(coluna);
+              this.isEditMode = false;
             },
             error: (err: Error) => {console.error('Erro ao criar:', err)}
           },
@@ -132,15 +136,20 @@ export class AppComponent {
     switch (method) {
       case 'GET':
         this.tarefaService.getTarefa(formData.id).subscribe({
-          next: (response) => console.log('Dados recebidos:', response),
+          next: (tarefa: ITarefa) => {
+
+          },
           error: (error) => console.error('Erro ao buscar:', error)
         });
         break;
 
       case 'POST':
-        this.tarefaService.postTarefa(formData).subscribe({
+        this.tarefaService.postTarefa(formData, this.formTarefa.value.coluna_id).subscribe({
           next: (response) => {
-            console.log('Dados criados:', response);
+            const colunaId = this.formTarefa.value.coluna_id;
+            const coluna = this.colunas.find(col => col.id == colunaId)
+
+            coluna?.tarefas.push(response);
             this.formTarefa.reset();
           },
           error: (error) => console.error('Erro ao criar:', error)
