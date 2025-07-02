@@ -1,7 +1,7 @@
 import { ITarefa } from "./tarefa.interface";
 
 export interface IColuna {
-  id: string
+  id: number;
   nome: string;
   corColuna: ICorColuna;
   tarefas: ITarefa[];

@@ -1,12 +1,13 @@
 <div class="coluna" [ngClass]="coluna.corColuna">
   <h2>{{ coluna.nome }}</h2>
+  <button (click)="deleteColuna()">Deletar Coluna</button>
   <div class="tarefas">
-    @for (tarefa of coluna.tarefas; track $index) {
+    <ng-container *ngFor="let tarefa of coluna.tarefas; trackBy: trackByTarefa">
       <app-tarefa
         [tarefa]="tarefa"
         (tarefaDeletada)="deletarTarefa($event)"
         (tarefaEditada)="editarTarefa($event)">
       </app-tarefa>
-    }
+    </ng-container>
   </div>
 </div>

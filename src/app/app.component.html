@@ -1,22 +1,18 @@
-<!-- form.component.html -->
+<!-- Formulários para Coluna e Tarefa -->
 <div class="forms">
   <form [formGroup]="formColuna" (ngSubmit)="submitColuna(isEditMode ? 'PUT' : 'POST')">
     <h2>Coluna</h2>
-    @if (isEditMode) {
-      <div>
-        <label for="id">ID:</label>
-        <input id="id" type="text" formControlName="id" readonly>
-      </div>
-    }
+    <div *ngIf="isEditMode">
+      <label for="id">ID:</label>
+      <input id="id" type="text" formControlName="id" readonly>
+    </div>
 
     <div>
       <label for="nome">Nome:</label>
       <input id="nome" type="text" formControlName="nome">
-      @if (formColuna.get('nome')?.invalid && formColuna.get('nome')?.touched) {
-        <div class="error">
-          Nome é obrigatório
-        </div>
-      }
+      <div class="error" *ngIf="formColuna.get('nome')?.invalid && formColuna.get('nome')?.touched">
+        Nome é obrigatório
+      </div>
     </div>
 
     <div>
@@ -30,49 +26,38 @@
 
     <div class="buttons">
       <button type="submit">{{ isEditMode ? 'Atualizar' : 'Criar' }}</button>
-
-      <button type="button" (click)="submitColuna('DELETE')" [disabled]="!isEditMode">
-        Deletar
-      </button>
-
+      <button type="button" (click)="submitColuna('DELETE')" [disabled]="!isEditMode">Deletar</button>
       <button type="button" (click)="formColuna.reset()">Limpar</button>
     </div>
   </form>
+
   <form [formGroup]="formTarefa" (ngSubmit)="submitTarefa(isEditMode ? 'PUT' : 'POST')">
     <h2>Tarefa</h2>
-    @if (isEditMode) {
-      <div>
-        <label for="id">ID:</label>
-        <input id="id" type="text" formControlName="id" readonly>
-      </div>
-    }
+    <div *ngIf="isEditMode">
+      <label for="id">ID:</label>
+      <input id="id" type="text" formControlName="id" readonly>
+    </div>
 
     <div>
       <label for="titulo">Título:</label>
       <input id="titulo" type="text" formControlName="titulo">
-      @if (formColuna.get('titulo')?.invalid && formColuna.get('titulo')?.touched) {
-        <div class="error">
-          Nome é obrigatório
-        </div>
-      }
+      <div class="error" *ngIf="formTarefa.get('titulo')?.invalid && formTarefa.get('titulo')?.touched">
+        Título é obrigatório
+      </div>
     </div>
 
     <div>
       <label for="descricao">Descrição:</label>
       <input id="descricao" type="text" formControlName="descricao">
-      @if (formColuna.get('descricao')?.invalid && formColuna.get('descricao')?.touched) {
-        <div class="error">
-          Nome é obrigatório
-        </div>
-      }
+      <div class="error" *ngIf="formTarefa.get('descricao')?.invalid && formTarefa.get('descricao')?.touched">
+        Descrição é obrigatória
+      </div>
     </div>
 
     <div>
       <label for="coluna_id">Coluna</label>
       <select id="coluna_id" formControlName="coluna_id">
-        @for (item of colunas; track $index) {
-          <option [value]="item.id">{{ item.nome }}</option>
-        }
+        <option *ngFor="let item of colunas" [value]="item.id">{{ item.nome }}</option>
       </select>
     </div>
 
@@ -87,20 +72,17 @@
 
     <div class="buttons">
       <button type="submit">{{ isEditMode ? 'Atualizar' : 'Criar' }}</button>
-
-      <button type="button" (click)="submitTarefa('DELETE')" [disabled]="!isEditMode">
-        Deletar
-      </button>
-
-      <button type="button" (click)="formColuna.reset()">Limpar</button>
+      <button type="button" (click)="submitTarefa('DELETE')" [disabled]="!isEditMode">Deletar</button>
+      <button type="button" (click)="formTarefa.reset()">Limpar</button>
     </div>
   </form>
 </div>
 
+<!-- Listagem das colunas -->
 <div class="colunas">
-  @for (item of colunas; track $index) {
-    <app-coluna
+  <app-coluna
+    *ngFor="let item of colunas; trackBy: trackByColuna"
     [coluna]="item"
-    ></app-coluna>
-  }
+    (colunaDeletada)="removerColuna($event)">
+  </app-coluna>
 </div>
