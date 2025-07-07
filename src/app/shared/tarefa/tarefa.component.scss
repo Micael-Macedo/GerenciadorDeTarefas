@@ -1,16 +1,48 @@
-.tarefa{
+input, select, textarea{
+  border-radius: 10px;
+}
+h3, p{
+  margin: 0;
+}
+
+.input-area{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.tarefa {
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
-  &.PENDENTE{
-    border: 5px solid #FE8330;
-    border-left: 20px solid #FE8330;
+  &.PENDENTE {
+    border: 5px solid #fe8330;
+    border-left: 20px solid #fe8330;
   }
-  &.DESENVOLVENDO{
-    border: 5px solid #FFE135;
-    border-left: 20px solid #FFE135;
+  &.DESENVOLVENDO {
+    border: 5px solid #ffe135;
+    border-left: 20px solid #ffe135;
   }
-  &.CONCLUIDO{
+  &.CONCLUIDO {
+    border: 5px solid #0f0;
+    border-left: 20px solid #0f0;
+  }
+}
+.tarefa-edit {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  gap: 10px;
+  &.PENDENTE {
+    border: 5px solid #fe8330;
+    border-left: 20px solid #fe8330;
+  }
+  &.DESENVOLVENDO {
+    border: 5px solid #ffe135;
+    border-left: 20px solid #ffe135;
+  }
+  &.CONCLUIDO {
     border: 5px solid #0f0;
     border-left: 20px solid #0f0;
   }

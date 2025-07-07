@@ -1,3 +1,4 @@
+import { IColuna } from "./coluna.interface";
 
 export enum StatusTarefa {
   PENDENTE = 'PENDENTE',
@@ -12,4 +13,5 @@ export interface ITarefa {
   concluida: boolean;
   prioridade: string;
   status: StatusTarefa;
+  coluna_id?: number;
 }

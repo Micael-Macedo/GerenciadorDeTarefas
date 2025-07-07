@@ -47,9 +47,21 @@ export class AppComponent {
       descricao: ['', Validators.required],
       prioridade: ['', Validators.required],
     });
+
+
   }
 
   ngOnInit(): void {
+    this.getColunas();
+
+    this.colunaService.updateDataEmit.subscribe({
+      next: () => {
+        this.getColunas()
+      }
+    })
+  }
+
+  private getColunas() {
     this.colunaService.getColunas().subscribe({
       next: (colunas: IColuna[]) => {
         this.colunas = colunas;

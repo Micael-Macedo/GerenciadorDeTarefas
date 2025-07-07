@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IColuna } from '../interfaces/coluna.interface';
@@ -12,6 +12,8 @@ export class ColunaService {
   private apiUrl = 'http://localhost:8080/api/coluna';
 
   constructor(private http: HttpClient) {}
+
+  @Output() updateDataEmit = new EventEmitter<boolean>()
 
   getColunas(): Observable<IColuna[]> {
     return this.http.get<IColuna[]>(this.apiUrl);
@@ -36,4 +38,5 @@ export class ColunaService {
   addTarefaToColuna(colunaId: number, tarefa: ITarefa): Observable<IColuna> {
     return this.http.post<IColuna>(`${this.apiUrl}/${colunaId}/tarefa`, tarefa);
   }
+
 }

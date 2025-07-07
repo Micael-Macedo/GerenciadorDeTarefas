@@ -11,9 +11,39 @@
 </ng-container>
 
 <ng-template #modoEdicao>
-  <div class="tarefa-edit">
-    <input [(ngModel)]="tarefaEditavel.titulo" placeholder="Título" />
-    <textarea [(ngModel)]="tarefaEditavel.descricao" placeholder="Descrição"></textarea>
+  <div class="tarefa-edit" [ngClass]="tarefaEditavel.status">
+    <div class="input-area">
+      <label for="">Título</label>
+      <input [(ngModel)]="tarefaEditavel.titulo" placeholder="Título" />
+    </div>
+    <div class="input-area">
+      <label for="">Descricao</label>
+      <textarea [(ngModel)]="tarefaEditavel.descricao" placeholder="Descrição"></textarea>
+    </div>
+    <div class="input-area">
+      <label for="">Prioridade</label>
+      <select id="prioridade" [(ngModel)]="tarefaEditavel.prioridade" [value]="tarefaEditavel.prioridade">
+        <option value="ALTA">Alta</option>
+        <option value="MEDIA">Média</option>
+        <option value="BAIXA">Baixa</option>
+      </select>
+    </div>
+    <div class="input-area">
+      <label for="">Status</label>
+      <select id="status" [(ngModel)]="tarefaEditavel.status" [value]="tarefaEditavel.status">
+        <option value="PENDENTE">Pendente</option>
+        <option value="DESENVOLVENDO">Desenvolvendo</option>
+        <option value="CONCLUIDO">Concluído</option>
+      </select>
+    </div>
+    <div class="input-area">
+      <label for="">Coluna</label>
+      <select [(ngModel)]="tarefaEditavel.coluna_id" [value]="coluna_id">
+        @for (item of colunas; track $index) {
+          <option [value]="item.id" [selected]="coluna_id == item.id">{{ item.nome }}</option>
+        }
+      </select>
+    </div>
     <button (click)="salvarEdicao()">Salvar</button>
     <button (click)="cancelarEdicao()">Cancelar</button>
   </div>
