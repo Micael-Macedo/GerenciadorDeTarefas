@@ -1,10 +1,15 @@
 <div class="coluna" [ngClass]="coluna.corColuna">
-  <h2>{{ coluna.nome }}</h2>
-  <button (click)="deleteColuna()">Deletar Coluna</button>
+  <div class="header">
+    <h2>{{ coluna.nome }}</h2>
+    <div class="actions">
+      <button (click)="deleteColuna()">Deletar Coluna</button>
+    </div>
+  </div>
   <div class="tarefas">
     <ng-container *ngFor="let tarefa of coluna.tarefas; trackBy: trackByTarefa">
       <app-tarefa
         [tarefa]="tarefa"
+        [coluna_id]="coluna.id"
         (tarefaDeletada)="deletarTarefa($event)"
         (tarefaEditada)="editarTarefa($event)">
       </app-tarefa>

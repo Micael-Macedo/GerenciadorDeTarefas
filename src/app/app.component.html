@@ -26,7 +26,6 @@
 
     <div class="buttons">
       <button type="submit">{{ isEditMode ? 'Atualizar' : 'Criar' }}</button>
-      <button type="button" (click)="submitColuna('DELETE')" [disabled]="!isEditMode">Deletar</button>
       <button type="button" (click)="formColuna.reset()">Limpar</button>
     </div>
   </form>

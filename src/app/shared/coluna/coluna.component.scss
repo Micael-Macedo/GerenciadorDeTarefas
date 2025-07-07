@@ -2,9 +2,10 @@
   border-radius: 20px;
   width: 500px;
   height: 500px;
-  padding: 5px;
+  padding: 10px 20px;
   display: flex;
   flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   &.LARANJA{
     border: 5px solid #FE8330;
   }
@@ -17,10 +18,26 @@
   &.VERMELHO{
     border: 5px solid #FF0000;
   }
+  &.ROXO{
+    border: 5px solid purple;
+  }
+  &.AZUL{
+    border: 5px solid blue;
+  }
+
+  h2{
+    margin: 0;
+    padding: 0;
+  }
+  .header{
+    display: flex;
+    justify-content: space-between;
+  }
   .tarefas{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding: 10px;
     overflow-y: scroll;
     height: 100%;
   }

@@ -8,7 +8,13 @@
   gap: 20px;
 }
 .colunas{
+  width: 99vw;
   display: flex;
   gap: 20px;
+  padding: 20px;
   overflow-x: scroll;
+}
+
+input, select{
+  border-radius: 10px;
 }
