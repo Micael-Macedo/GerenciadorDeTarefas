@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+//Decorador de metadados do component
 @Component({
   selector: 'app-dashboard',
   imports: [],

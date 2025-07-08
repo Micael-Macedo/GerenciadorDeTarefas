@@ -1,3 +1,4 @@
+//Importação de dependências e serviços do Angular + imp de interfaces e componentes do projeto
 import { Component, inject } from '@angular/core';
 import { IColuna } from '../interfaces/coluna.interface';
 import { ColunaComponent } from './shared/coluna/coluna.component';
@@ -8,6 +9,8 @@ import { TarefaService } from '../services/tarefa.service';
 import { ITarefa } from '../interfaces/tarefa.interface';
 import { CommonModule } from '@angular/common';
 
+
+//Declaração dos modulos necessários (imports) e html/css do componente principal
 @Component({
   selector: 'app-root',
   imports: [
@@ -19,20 +22,26 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
+
+//Injeção de serviços p se comunicar com o BE
 export class AppComponent {
   title = 'GerenciadorDeTarefas';
   readonly colunaService = inject(ColunaService);
   readonly tarefaService = inject(TarefaService);
 
+  //Guarda os dados do BE
   colunas: IColuna[] = [];
 
+  //Formularios reativos
   formColuna: FormGroup;
   formTarefa: FormGroup;
+ 
+  //Controle de estado para saber se está editando
   isEditMode = false;
-
   colunaModel!: IColuna;
   tarefaModel!: ITarefa;
 
+  //Montagem dos forms reativos com validações obrigatórias (validators.required)
   constructor(private fb: FormBuilder) {
     this.formColuna = this.fb.group({
       id: [null],
@@ -51,6 +60,7 @@ export class AppComponent {
 
   }
 
+  //Carrega colunas do BE e tb escuta eventos emitidos pelo ColunaService p atualizar a tela
   ngOnInit(): void {
     this.getColunas();
 
@@ -61,6 +71,7 @@ export class AppComponent {
     })
   }
 
+  //Funcão aux pra obter lista de colunas da API
   private getColunas() {
     this.colunaService.getColunas().subscribe({
       next: (colunas: IColuna[]) => {
@@ -69,6 +80,7 @@ export class AppComponent {
     });
   }
 
+  //CRUD de colunas (Método genérico para executar ações)
   submitColuna(method: string): void {
     if (this.formColuna.invalid) {
       this.formColuna.markAllAsTouched();
@@ -88,7 +100,8 @@ export class AppComponent {
           }
         });
         break;
-
+      
+      //Coluna sendo criada e adicionada no array colunas
       case 'POST':
         this.colunaService.postColuna(formData).subscribe({
           next: (coluna: IColuna) => {
@@ -146,7 +159,8 @@ export class AppComponent {
           error: (error) => console.error('Erro ao buscar:', error)
         });
         break;
-
+        
+        //Tarefa criada é inserida na coluna
       case 'POST':
         this.tarefaService.postTarefa(formData, this.formTarefa.value.coluna_id).subscribe({
           next: (response) => {
@@ -184,6 +198,7 @@ export class AppComponent {
     }
   }
 
+  //Remove a coluna da lista local sem precisar de nova requisição GET
   removerColuna(id: number): void {
     this.colunas = this.colunas.filter(coluna => coluna.id !== id);
     console.log(`Coluna com id ${id} removida da lista local.`);

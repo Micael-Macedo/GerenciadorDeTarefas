@@ -5,23 +5,33 @@
     <p><strong>Status:</strong> {{ tarefa.status }}</p>
     <p><strong>Prioridade:</strong> {{ tarefa.prioridade }}</p>
 
+    //Quando o usuário clica em Editar o método habilitarEdicao() é chamado
     <button (click)="habilitarEdicao()">Editar</button>
+
+    //Chama deleteTarefa(id) passando o id da tarefa.
     <button (click)="deleteTarefa(tarefa.id)">Deletar</button>
   </div>
 </ng-container>
 
+//tarefaEditavel é um objeto usado para armazenar as alterações antes de salvar
 <ng-template #modoEdicao>
   <div class="tarefa-edit" [ngClass]="tarefaEditavel.status">
+    
     <div class="input-area">
+      
+      //Faz com que as mudanças no input atualizem diretamente o objeto tarefaEditavel
       <label for="">Título</label>
-      <input [(ngModel)]="tarefaEditavel.titulo" placeholder="Título" />
+      <input [(ngModel)]="tarefaEditavel.titulo" placeholder="Título" /> 
     </div>
+
     <div class="input-area">
       <label for="">Descricao</label>
       <textarea [(ngModel)]="tarefaEditavel.descricao" placeholder="Descrição"></textarea>
     </div>
     <div class="input-area">
       <label for="">Prioridade</label>
+
+      //O valor selecionado será refletido diretamente em tarefaEditavel.prioridade
       <select id="prioridade" [(ngModel)]="tarefaEditavel.prioridade" [value]="tarefaEditavel.prioridade">
         <option value="ALTA">Alta</option>
         <option value="MEDIA">Média</option>
@@ -44,7 +54,11 @@
         }
       </select>
     </div>
+
+    //Salvar chama a função que envia os dados editados para o backend
     <button (click)="salvarEdicao()">Salvar</button>
+
+    //Cancelar descarta as alterações e volta para o modo de visualização
     <button (click)="cancelarEdicao()">Cancelar</button>
   </div>
 </ng-template>
