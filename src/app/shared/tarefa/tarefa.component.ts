@@ -30,13 +30,15 @@ export class TarefaComponent {
 
   //Ativa o modo de edição e carrega as colunas disponíveis (caso queira mudar de coluna)
   habilitarEdicao() {
+
     this.colunaService.getColunas().subscribe({
       next: (colunas: IColuna[]) => {
         this.colunas = colunas
       }
     })
     this.editando = true;
-    this.tarefaEditavel = { ...this.tarefa }; 
+    this.tarefa.coluna_id = this.coluna_id
+    this.tarefaEditavel = { ...this.tarefa };
   }
 
   //Cancela a edição 

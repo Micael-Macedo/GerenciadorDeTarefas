@@ -1,6 +1,11 @@
 <ng-container *ngIf="!editando; else modoEdicao">
   <div class="tarefa" [ngClass]="tarefa.status">
-    <h3>{{ tarefa.titulo }}</h3>
+    <div class="d-flex">
+      <h3>{{ tarefa.titulo }}</h3>
+      @if (tarefa.prioridade == 'ALTA') {
+        <div class="warning"></div>
+      }
+    </div>
     <p>{{ tarefa.descricao }}</p>
     <p><strong>Status:</strong> {{ tarefa.status }}</p>
     <p><strong>Prioridade:</strong> {{ tarefa.prioridade }}</p>

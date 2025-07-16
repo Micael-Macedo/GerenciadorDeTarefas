@@ -7,7 +7,7 @@
       <input id="id" type="text" formControlName="id" readonly>
     </div>
 
-    <div>
+    <div class="input-area">
       <label for="nome">Nome:</label>
       <input id="nome" type="text" formControlName="nome">
       <div class="error" *ngIf="formColuna.get('nome')?.invalid && formColuna.get('nome')?.touched">
@@ -15,12 +15,14 @@
       </div>
     </div>
 
-    <div>
+    <div class="input-area">
       <label for="corColuna">Cor:</label>
       <select id="corColuna" formControlName="corColuna">
         <option value="AMARELO">Amarelo</option>
         <option value="VERDE">Verde</option>
         <option value="LARANJA">Laranja</option>
+        <option value="AZUL">Azul</option>
+        <option value="VERMELHO">Vermelho</option>
       </select>
     </div>
 
@@ -36,38 +38,43 @@
       <label for="id">ID:</label>
       <input id="id" type="text" formControlName="id" readonly>
     </div>
+    <div class="d-flex">
+      <div class="input-area">
+        <label for="titulo">Título:</label>
+        <input id="titulo" type="text" formControlName="titulo">
+        <div class="error" *ngIf="formTarefa.get('titulo')?.invalid && formTarefa.get('titulo')?.touched">
+          Título é obrigatório
+        </div>
+      </div>
 
-    <div>
-      <label for="titulo">Título:</label>
-      <input id="titulo" type="text" formControlName="titulo">
-      <div class="error" *ngIf="formTarefa.get('titulo')?.invalid && formTarefa.get('titulo')?.touched">
-        Título é obrigatório
+      <div class="input-area">
+        <label for="descricao">Descrição:</label>
+        <input id="descricao" type="text" formControlName="descricao">
+        <div class="error" *ngIf="formTarefa.get('descricao')?.invalid && formTarefa.get('descricao')?.touched">
+          Descrição é obrigatória
+        </div>
       </div>
     </div>
+    <div class="d-flex">
 
-    <div>
-      <label for="descricao">Descrição:</label>
-      <input id="descricao" type="text" formControlName="descricao">
-      <div class="error" *ngIf="formTarefa.get('descricao')?.invalid && formTarefa.get('descricao')?.touched">
-        Descrição é obrigatória
+      <div class="input-area">
+        <label for="coluna_id">Coluna</label>
+        <select id="coluna_id" formControlName="coluna_id">
+          <option *ngFor="let item of colunas" [value]="item.id">{{ item.nome }}</option>
+        </select>
       </div>
+
+      <div class="input-area">
+        <label for="prioridade">Prioridade</label>
+        <select id="prioridade" formControlName="prioridade">
+          <option value="ALTA">Alta</option>
+          <option value="MEDIA">Média</option>
+          <option value="BAIXA">Baixa</option>
+        </select>
+      </div>
+
     </div>
 
-    <div>
-      <label for="coluna_id">Coluna</label>
-      <select id="coluna_id" formControlName="coluna_id">
-        <option *ngFor="let item of colunas" [value]="item.id">{{ item.nome }}</option>
-      </select>
-    </div>
-
-    <div>
-      <label for="prioridade">Prioridade</label>
-      <select id="prioridade" formControlName="prioridade">
-        <option value="ALTA">Alta</option>
-        <option value="MEDIA">Média</option>
-        <option value="BAIXA">Baixa</option>
-      </select>
-    </div>
 
     <div class="buttons">
       <button type="submit">{{ isEditMode ? 'Atualizar' : 'Criar' }}</button>
@@ -79,9 +86,7 @@
 
 <!-- Listagem das colunas -->
 <div class="colunas">
-  <app-coluna
-    *ngFor="let item of colunas; trackBy: trackByColuna"
-    [coluna]="item"
+  <app-coluna *ngFor="let item of colunas; trackBy: trackByColuna" [coluna]="item"
     (colunaDeletada)="removerColuna($event)">
   </app-coluna>
 </div>
