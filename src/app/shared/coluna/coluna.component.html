@@ -1,25 +1,22 @@
-//Aqui começa a renderização da coluna de tarefas
+<!-- //Aqui começa a renderização da coluna de tarefas -->
 <div class="coluna" [ngClass]="coluna.corColuna">
 
-  //Exibe o nome da coluna (ex: "A Fazer", "Em andamento"...)
+  <!-- //Exibe o nome da coluna (ex: "A Fazer", "Em andamento"...) -->
   <div class="header">
     <h2>{{ coluna.nome }}</h2>
-    
-    //Botão de ação que chama o método deleteColuna() do TypeScript quando clicado
+
+    <!-- //Botão de ação que chama o método deleteColuna() do TypeScript quando clicado -->
     <div class="actions">
       <button (click)="deleteColuna()">Deletar Coluna</button>
     </div>
   </div>
 
-  //Itera sobre o array de tarefas da coluna
+  <!-- //Itera sobre o array de tarefas da coluna -->
   <div class="tarefas">
     <ng-container *ngFor="let tarefa of coluna.tarefas; trackBy: trackByTarefa">
-      
-      //Componente filho app-tarefa (representa uma tarefa individual)
-      <app-tarefa
-        [tarefa]="tarefa"
-        [coluna_id]="coluna.id"
-        (tarefaDeletada)="deletarTarefa($event)"
+
+      <!-- Componente filho app-tarefa (representa uma tarefa individual) -->
+      <app-tarefa [tarefa]="tarefa" [coluna_id]="coluna.id" (tarefaDeletada)="deletarTarefa($event)"
         (tarefaEditada)="editarTarefa($event)">
       </app-tarefa>
     </ng-container>
