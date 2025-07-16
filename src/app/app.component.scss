@@ -5,7 +5,7 @@
 }
 .forms {
   display: flex;
-  gap: 20px;
+  gap: 50px;
 }
 .colunas{
   width: 99vw;
@@ -14,7 +14,17 @@
   padding: 20px;
   overflow-x: scroll;
 }
-
+.d-flex{
+  display: flex;
+  gap: 5px;
+}
+.input-area{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-bottom: 5px;
+}
 input, select{
   border-radius: 10px;
 }

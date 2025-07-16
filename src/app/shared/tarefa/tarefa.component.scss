@@ -27,6 +27,15 @@ h3, p{
     border-left: 20px solid #0f0;
   }
 }
+.warning{
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+}
+.d-flex{
+  display: flex;
+}
 .tarefa-edit {
   display: flex;
   flex-direction: column;
@@ -47,3 +56,4 @@ h3, p{
     border-left: 20px solid #0f0;
   }
 }
+
