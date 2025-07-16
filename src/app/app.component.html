@@ -78,7 +78,6 @@
 
     <div class="buttons">
       <button type="submit">{{ isEditMode ? 'Atualizar' : 'Criar' }}</button>
-      <button type="button" (click)="submitTarefa('DELETE')" [disabled]="!isEditMode">Deletar</button>
       <button type="button" (click)="formTarefa.reset()">Limpar</button>
     </div>
   </form>
